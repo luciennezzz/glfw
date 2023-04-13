@@ -1,6 +1,7 @@
 project "GLFW"
 	kind "StaticLib"
 	language "C"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-itm/" .. outputdir .. "/%{prj.name}")
@@ -24,7 +25,6 @@ project "GLFW"
 	}
 
 	systemversion "latest"
-	staticruntime "On"
 
 	files
 	{
@@ -46,5 +46,12 @@ project "GLFW"
 		"_CRT_SECURE_NO_WARNINGS"
 	}
 
+
+
+	filter "configurations:Debug"
+		runtime "Debug"
+		symbols "on"
+	
 	filter "configurations:Release"
-		buildoptions "/MT"
+		runtime "Release"
+		optimize "on"
